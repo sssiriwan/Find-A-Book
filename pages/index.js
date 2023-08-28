@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Image from "next/image";
 import AuthorsList from "@/components/AuthorsList";
-
+import RenderImage from "@/components/ImageRender";
+import CategoriesList from "@/components/CategoriesList";
+import DescriptionRender from "@/components/DescriptionRender";
+import PreviewLinkRender from "@/components/PreviewLinkRender";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -20,7 +22,7 @@ export default function Home() {
   }, [query]);
 
   console.log(results);
-  // try {
+
   return (
     <main>
       <h1>Find a Book</h1>
@@ -34,84 +36,22 @@ export default function Home() {
         {results.map((result, index) => {
           return (
             <div key={result.id} className=" text-black">
-              <div>{result.volumeInfo.title}</div>
+              <RenderImage value={result} />
               <div>
-                <img src={result.volumeInfo.imageLinks.thumbnail} />
-              </div>
-              <div className="authors-list">
-                <div className="author">
-                  <AuthorsList value={result} />
-                </div>
-              </div>
+                <p>{result.volumeInfo.title}</p>
 
-              <div>{result.volumeInfo.description}</div>
-              <a href={result.volumeInfo.previewLink}>Link</a>
+                <AuthorsList value={result} />
+
+                <CategoriesList value={result} />
+
+                <DescriptionRender value={result} />
+
+                <PreviewLinkRender value={result} />
+              </div>
             </div>
           );
         })}
       </ul>
     </main>
   );
-  //  } catch (error) {
-  //    return (<>
-  //      <p>Book not found🧐, Try Searching under a different name🤓</p>
-
-  //     </>
-  //    );
-  //  }
 }
-
-{
-  /* <div className="authors-list">
-              <div className="author">
-              {result.volumeInfo.authors.map((author, index) => {
-                return (
-                  <span className="tag" key={index}>
-                   authors : {author}
-                  </span>
-                );
-              })} </div>
-            </div> */
-}
-
-
-// const authorsList = (result) => {
-//   const authors = result.volumeInfo.authors;
-
-//   // ตรวจสอบว่า authors มีค่าหรือไม่
-//   if (authors) {
-//     // เรียกใช้ map() หาก authors มีข้อมูล
-//     const renderedAuthors = authors.map((author, index) => {
-//       return (
-//         <span className="tag" key={index}>
-//           authors : {author}
-//         </span>
-//       );
-//     });
-
-//     return (
-//       <div className="authors-list">
-//         <div className="author">
-//           {renderedAuthors}
-//         </div>
-//       </div>
-//     );
-//   } else {
-//     // authors ไม่มีข้อมูล แสดงข้อความแจ้ง
-//     return (
-//       <div className="authors-list">
-//         <div className="author">
-//           No authors found.
-//         </div>
-//       </div>
-//     );
-//   }
-// };
-
-// {result.volumeInfo.authors.map((author, index) => {
-//   return (
-//     <span className="tag" key={index}>
-//       authors : {author}
-//     </span>
-//   );
-// })}
