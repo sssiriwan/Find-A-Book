@@ -24,7 +24,7 @@ export default function Home() {
   console.log(results);
 
   return (
-    <main>
+    <main className=" w-full grid grid-cols-1 place-items-center">
       <h1>Find a Book</h1>
       <input
         className=" text-black"
@@ -32,12 +32,12 @@ export default function Home() {
         placeholder="Search for books..."
         onChange={(e) => setQuery(e.target.value)}
       />
-      <ul>
+      
         {results.map((result, index) => {
           return (
-            <div key={result.id} className=" text-black">
-              <RenderImage value={result} />
-              <div>
+            <div key={result.id} className=" w-3/4 text-black grid grid-cols-3 py-2 ">
+              <RenderImage value={result}  />
+              <div className=" col-span-2">
                 <p>{result.volumeInfo.title}</p>
 
                 <AuthorsList value={result} />
@@ -51,7 +51,7 @@ export default function Home() {
             </div>
           );
         })}
-      </ul>
+      
     </main>
   );
 }

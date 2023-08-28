@@ -5,12 +5,12 @@ export default function RenderImage({ value }) {
   if (imageLinks) {
     // เรียกใช้ img แสดงภาพ
     return (
-      <div>
+      <div className=" w-full place-self-center pl-28">
         <img src={imageLinks.thumbnail} />
       </div>
     );
   } else {
     // imageLinks ไม่มีข้อมูล แสดงข้อความแจ้ง
-    return <div>No image found.</div>;
+    return <div className=" w-full place-self-center pl-28">No image found.</div>;
   }
 }
