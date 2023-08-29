@@ -42,7 +42,7 @@ export default function Home() {
           >
             <RenderImage value={result} />
             <div className=" col-span-2 ">
-              <p className=" text-lg font-semibold">
+              <p className=" text-lg font-semibold line-clamp-1">
                 {result.volumeInfo.title}
               </p>
 
