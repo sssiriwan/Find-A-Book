@@ -24,34 +24,39 @@ export default function Home() {
   console.log(results);
 
   return (
-    <main className=" w-full grid grid-cols-1 place-items-center">
-      <h1>Find a Book</h1>
-      <input
-        className=" text-black"
-        type="text"
-        placeholder="Search for books..."
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      
-        {results.map((result, index) => {
-          return (
-            <div key={result.id} className=" w-3/4 text-black grid grid-cols-3 py-2 ">
-              <RenderImage value={result}  />
-              <div className=" col-span-2">
-                <p>{result.volumeInfo.title}</p>
+    <main className=" w-screen h-screen grid grid-cols-1 place-items-center pt-[50px]">
+      <div className=" w-3/4 text-center">
+        <h1 className=" pb-3 text-[45px]">📚Find a Book.</h1>
+        <input
+          className=" text-black w-1/4 text-center "
+          type="text"
+          placeholder="Search for books...🤓"
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </div>
+      {results.map((result, index) => {
+        return (
+          <div
+            key={result.id}
+            className=" w-3/4 h-64 text-black grid grid-cols-3 py-2 border-spacing-2"
+          >
+            <RenderImage value={result} />
+            <div className=" col-span-2 ">
+              <p className=" text-lg font-semibold">
+                {result.volumeInfo.title}
+              </p>
 
-                <AuthorsList value={result} />
+              <AuthorsList value={result} />
 
-                <CategoriesList value={result} />
+              <CategoriesList value={result} />
 
-                <DescriptionRender value={result} />
+              <DescriptionRender value={result} />
 
-                <PreviewLinkRender value={result} />
-              </div>
+              <PreviewLinkRender value={result} />
             </div>
-          );
-        })}
-      
+          </div>
+        );
+      })}
     </main>
   );
 }
